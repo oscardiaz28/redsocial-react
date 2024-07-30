@@ -56,6 +56,73 @@ body {
     margin-bottom: 3rem;
 }
 
+.alert{
+    display: inline-block;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.Toastify__close-button--light{
+    color: #333 !important;
+}
+
+.box{
+    color: #ac2925;    
+    padding: 1.5rem 1rem;
+    padding-left: 1.5rem;
+    border-radius: 8px;
+    max-width: 302px;
+    margin-bottom: 1.5rem;
+    
+}
+.box-danger{
+    background-color: #FDF2F2;
+}
+
+.alert::before{
+    content: "* ";
+}
+
+.alert-error{
+    color: darkred;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.btn .loader{
+    width: 15px;
+    height: 15px;
+    border: 3px solid white;
+    border-bottom-color: transparent;
+}
+
+.btn-submit-disabled{
+    background-color: #398439;
+    cursor: default;
+}
+
+
+
+@keyframes rotation {
+0% {
+    transform: rotate(0deg);
+}
+100% {
+    transform: rotate(360deg);
+}
+} 
+
+
 .layout{
     display: grid;
     grid-template-areas: 
@@ -446,5 +513,8 @@ button{
     line-height: 1.5;
     cursor: pointer;
     font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: .7rem;
 }
 

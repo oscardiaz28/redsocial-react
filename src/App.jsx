@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify"
 import Routing from "./router/Routing"
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <div className="layout">
 
       <Routing />
+      <ToastContainer />
 
     </div>
   )
