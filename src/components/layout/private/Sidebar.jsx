@@ -1,28 +1,34 @@
 import avatar from '../../../assets/img/user.png'
+import Constants from '../../../helpers/Constants';
+import useAuth from '../../../hooks/useAuth';
 
 const Sidebar = () => {
+
+  const {auth} = useAuth();
+
   return (
     <aside className="layout__aside">
       <header className="aside__header">
-        <h1 className="aside__title">Hola, Victor</h1>
+        <h1 className="aside__title">Hola, {auth.name}</h1>
       </header>
 
       <div className="aside__container">
         <div className="aside__profile-info">
           <div className="profile-info__general-info">
             <div className="general-info__container-avatar">
-              <img
-                src={avatar}
-                className="container-avatar__img"
-                alt="Foto de perfil"
-              />
+              {
+                auth.image != "perfil.jpg" && <img src={Constants.BASE_URL+"users/avatar/"+auth.image} className="container-avatar__img" alt="Foto de perfil"/>
+              }
+              { 
+                auth.image == "perfil.jpg" && <img src={avatar} className="container-avatar__img" alt="Foto de perfil"/>
+              }
             </div>
 
             <div className="general-info__container-names">
               <a href="#" className="container-names__name">
-                Victor Robles
+              {auth.name}
               </a>
-              <p className="container-names__nickname">VictorWeb</p>
+              <p className="container-names__nickname">{auth.nick}</p>
             </div>
           </div>
 

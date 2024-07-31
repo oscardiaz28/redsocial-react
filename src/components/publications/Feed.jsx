@@ -1,7 +1,12 @@
-import React from "react";
 import avatar from '../../assets/img/user.png';
+import useAuth from "../../hooks/useAuth";
 
 const Feed = () => {
+
+  const {auth} = useAuth();
+
+  console.log(auth)
+
   return (
     <>
       <header className="content__header">
@@ -25,7 +30,7 @@ const Feed = () => {
             <div className="post__body">
               <div className="post__user-info">
                 <a href="#" className="user-info__name">
-                  Victor Robles
+                  {auth.name}
                 </a>
                 <span className="user-info__divider"> | </span>
                 <a href="#" className="user-info__create-date">

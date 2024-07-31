@@ -2,29 +2,10 @@ import { useState } from "react";
 import useForm from "../../hooks/useForm";
 import Constants from "../../helpers/Constants";
 import { Bounce, toast } from "react-toastify";
+import { showMessage } from "../../helpers/Utils";
 
 
 const Register = () => {
-
-
-  const showMessage = ( {container, msg = "", data = ""} ) => {
-    const element = container.parentElement.firstElementChild;
-    element.innerHTML = "";
-    const div = document.createElement('DIV');
-    if( msg != ""  ){
-      div.innerHTML = msg;
-    }else if(data != null) {
-      const ul = document.createElement('ul')
-      Object.keys(data).forEach( key => {
-        const li = document.createElement('li')
-        li.textContent = data[key]
-        ul.appendChild(li);
-      })
-      div.appendChild(ul);
-    }
-    div.classList.add("box", "box-danger");
-    element.appendChild(div);
-  }
   
   const { form, changed} = useForm();
   // const [loading, setLoading] = useState(true);
@@ -68,8 +49,8 @@ const Register = () => {
         }
 
       }catch( error ){
-        console.log(error.message)
-        showMessage( { container: event.target, msg: error.message } )
+        showMessage( { container: event.target, msg: "Error, datos inválidos" } )
+
       }finally{
         setIsSubmitting(false)
       }

@@ -1,7 +1,8 @@
 const Constants = Object.freeze({
     BASE_URL: "http://localhost:8080/api/",
     ENDPOINTS: {
-        REGISTER_USER: "auth/signup"
+        REGISTER_USER: "auth/signup",
+        LOGIN_USER: "auth/login"
     },
     HTTP_METHODS: {
         GET: 'GET',
