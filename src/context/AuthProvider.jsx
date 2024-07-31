@@ -7,6 +7,8 @@ export const AuthProvider = ( {children} ) => {
 
   const [auth, setAuth] = useState({});
   const [counters, setCounters] = useState({});
+  const [loading, setLoading] = useState(false);
+
 
   useEffect( () => {
     authUser();
@@ -17,7 +19,10 @@ export const AuthProvider = ( {children} ) => {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
 
-    if(!token || !user) return false;
+    if(!token || !user) {
+        setLoading(false)
+        return false;
+    }    
 
     const userobj = JSON.parse(user);
     const userId = userobj.id;
@@ -33,9 +38,10 @@ export const AuthProvider = ( {children} ) => {
         })
 
         const data = await request.json();
+        setAuth(data)
 
         const urlCounters = Constants.BASE_URL+"users/counter";
-        const requestCounters = await fetch(url, {
+        const requestCounters = await fetch(urlCounters, {
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + token
@@ -44,8 +50,8 @@ export const AuthProvider = ( {children} ) => {
 
         const dataCounters = await requestCounters.json();
 
-        setAuth(data)
-
+        setCounters(dataCounters)
+        setLoading(false);
 
 
     }catch( error ){
@@ -55,9 +61,8 @@ export const AuthProvider = ( {children} ) => {
 
   }
 
-
   return (
-    <AuthContext.Provider value={ {auth, setAuth} } >
+    <AuthContext.Provider value={ {auth, setAuth, counters, loading} } >
         {children}
     </AuthContext.Provider>
   )

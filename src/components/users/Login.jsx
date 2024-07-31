@@ -2,12 +2,14 @@ import { useState } from "react"
 import useForm from "../../hooks/useForm";
 import { showMessage } from "../../helpers/Utils";
 import Constants from "../../helpers/Constants";
+import { Navigate, useNavigate } from "react-router";
 
 const Login = () => {
 
   const {form, changed} = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  const navigate = useNavigate();
 
 
   const handleSubmit = async (event) => {
@@ -38,7 +40,10 @@ const Login = () => {
 
           localStorage.setItem("token", token);
           localStorage.setItem("user", JSON.stringify(user))
+          // event.target.reset();
 
+          // navigate("/social" , {replace: true})
+          window.location.reload();
 
         }else{
           showMessage({container: event.target, msg: data.message })
